@@ -24,7 +24,10 @@ A cutting-edge, cross-platform music downloader featuring a **futuristic "Cyberp
 
 ## 📸 Screenshots
 
-*(Add your screenshots here)*
+<img width="1267" height="756" alt="image" src="https://github.com/user-attachments/assets/a5e62385-8b9b-413d-9834-5426afd7b961" />
+<img width="1267" height="756" alt="image" src="https://github.com/user-attachments/assets/c3f355e6-e27e-4a52-a25f-4e48b3593cd9" />
+<img width="1268" height="590" alt="image" src="https://github.com/user-attachments/assets/c3ccb7a4-c5a6-4a50-aa9a-397c6d938499" />
+
 
 ---
 
