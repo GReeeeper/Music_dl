@@ -1,0 +1,6 @@
+flet
+yt-dlp
+spotdl
+ffmpeg-python
+click
+pytest

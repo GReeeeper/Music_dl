@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+env/
+.env
+
+# Distribution / Build
+build/
+dist/
+*.spec
+
+# Application Data
+downloads/
+*.mp3
+*.wav
+*.flac
+*.m4a
+
+# OS Files
+.DS_Store
+Thumbs.db
