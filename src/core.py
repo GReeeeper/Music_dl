@@ -40,6 +40,11 @@ class Downloader:
         if os.path.exists(cwd_ffmpeg):
             return cwd_ffmpeg
         
+        # Check .spotdl (common download location)
+        spotdl_ffmpeg = os.path.join(os.path.expanduser("~"), ".spotdl", "ffmpeg.exe")
+        if os.path.exists(spotdl_ffmpeg):
+            return spotdl_ffmpeg
+
         # Check PATH
         import shutil
         if shutil.which("ffmpeg"):
@@ -244,7 +249,9 @@ class Downloader:
         if progress_callback:
             progress_callback("Starting Spotify download (this may take a while)...")
             
-        cmd = ["spotdl", url, "--output", output_dir, "--format", format]
+        # Use python -m spotdl to ensure we use the venv version
+        import sys
+        cmd = [sys.executable, "-m", "spotdl", url, "--output", output_dir, "--format", format]
         
         self.current_process = await asyncio.create_subprocess_exec(
             *cmd,

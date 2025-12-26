@@ -34,15 +34,15 @@ class MusicDownloaderApp:
         # --- Styles ---
         self.gradient_shader_mask = ft.LinearGradient(
             colors=[ft.Colors.CYAN, ft.Colors.PURPLE],
-            begin=ft.alignment.top_left,
-            end=ft.alignment.bottom_right,
+            begin=ft.alignment.Alignment(-1, -1),
+            end=ft.alignment.Alignment(1, 1),
         )
         
         # --- Header ---
         self.header = ft.Container(
             content=ft.Text("MUSIC DL", size=30, weight=ft.FontWeight.BOLD, color=ft.Colors.WHITE, text_align=ft.TextAlign.CENTER),
             padding=ft.padding.only(top=30, bottom=20),
-            alignment=ft.alignment.center
+            alignment=ft.alignment.Alignment(0, 0)
         )
 
         # --- Input Section (Glass Card) ---
@@ -57,7 +57,7 @@ class MusicDownloaderApp:
         )
         
         self.fetch_btn = ft.ElevatedButton(
-            text="FETCH",
+            "FETCH",
             style=ft.ButtonStyle(
                 color=ft.Colors.WHITE,
                 bgcolor=ft.Colors.CYAN_900,
@@ -179,7 +179,7 @@ class MusicDownloaderApp:
             content=ft.Column([], height=300, scroll=ft.ScrollMode.AUTO),
             actions=[
                 ft.TextButton("Cancel", on_click=self.close_dialog),
-                ft.ElevatedButton("Download Selected", on_click=self.start_download_from_dialog, bgcolor=ft.Colors.CYAN_900, color=ft.Colors.WHITE),
+                ft.ElevatedButton("Download Selected", on_click=self.start_download_from_dialog, style=ft.ButtonStyle(bgcolor=ft.Colors.CYAN_900, color=ft.Colors.WHITE)),
             ],
             actions_alignment=ft.MainAxisAlignment.END,
             bgcolor="#1a1a25",
@@ -191,7 +191,7 @@ class MusicDownloaderApp:
             content=ft.Text("This will permanently delete ALL files in the download folder.\nAre you sure?", color=ft.Colors.WHITE),
             actions=[
                 ft.TextButton("Cancel", on_click=self.close_confirm),
-                ft.ElevatedButton("Delete All", on_click=self.confirm_delete_folder, bgcolor=ft.Colors.RED, color=ft.Colors.WHITE),
+                ft.ElevatedButton("Delete All", on_click=self.confirm_delete_folder, style=ft.ButtonStyle(bgcolor=ft.Colors.RED, color=ft.Colors.WHITE)),
             ],
             actions_alignment=ft.MainAxisAlignment.END,
             bgcolor="#1a1a25",
@@ -438,6 +438,13 @@ class MusicDownloaderApp:
 
     def open_output_folder(self, e):
         path = self.output_dir
+        if not os.path.exists(path):
+            try:
+                os.makedirs(path, exist_ok=True)
+            except Exception as ex:
+                print(f"Error creating directory: {ex}")
+                return
+
         if platform.system() == "Windows":
             os.startfile(path)
         elif platform.system() == "Darwin":
